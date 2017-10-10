@@ -1,0 +1,22 @@
+				<fieldset>
+					<legend>Formulier gegevens</legend>
+					{% csrf_token %}
+					{% for field in form %}
+						<div {% if field.errors %} class="error"{% endif %}>
+							<label for="{{ field.id_for_label }}">{{ field.label }}:{% if field.field.required %}<strong class="req"> *</strong>{% endif %}</label>
+							<div class="field">
+								{{ field }}
+							</div>
+						</div>
+						{% if field.help_text %}
+							<div class="hint" data-opentxt="Toelichting bij het veld" data-closetxt="Sluit deze toelichting">
+								<p>{{ field.help_text|safe }}</p>
+							</div>
+						{% endif %}
+						{% if field.errors %}
+							{% for error in field.errors %}
+								<div class="message error"><p>{{ error|escape }}</p></div>
+							{% endfor %}
+						{% endif %}
+					{% endfor %}
+				</fieldset>

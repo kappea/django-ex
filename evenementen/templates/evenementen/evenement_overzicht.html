@@ -1,0 +1,45 @@
+{% extends "evenementen/navigation.html" %}
+
+{% block content %}
+<div id="content" class="article">
+	<table style="width:100%">
+		<tbody>
+			<tr>
+				<th scope="row">Naam</th>
+				<td>{{ evenement.naam }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Beschrijving</th>
+				<td>{{ evenement.omschrijving|safe }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Startdatum</th>
+				<td>{{ evenement.start_datum|date:"d-m-Y" }}</td>
+			</tr>
+			<tr>
+				<th scope="row">Einddatum</th>
+				<td>{{ evenement.einde_datum|date:"d-m-Y" }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+{% if perms.evenementen.change_evenement %}
+<div id="aside">
+	<div class="block">
+		<h2>Beheer</h2>
+		<ul class="common">
+			<li>
+				<a href="{% url 'evenementen:evenement_wijzig' evenement.slug %}" class="common">
+					<h3>Evenement wijzigen</h3>
+				</a>
+			</li>
+			<li>
+				<a href="{% url 'evenementen:evenement_wijzig' evenement.slug %}" class="common">
+					<h3>Evenement beëindigen</h3>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "mpportal/navigation.html" %}
+
+{% block content %}
+<div id="content" class="article">
+	<div class="form fancy">
+		<div id="usage_simple" style="position:relative;">
+			<form action="{% url 'mpportal:instrumentarium_voegtoe' %}" method="post" id="instrumentarium_voegtoe_form" autocomplete="off">
+				{% if form.non_field_errors %}<div class="message error"><p>Er zijn één of meerdere velden niet of niet juist ingevuld. Controleer uw gegevens en verstuur het formulier opnieuw.</p>{{ form.non_field_errors }}</div>{% endif %}
+				<div class="formWrapper eform">
+					<div class="eformText">
+						<h2 class="req">Instrumentarium toevoegen</h2>
+						<p class="meta req">* verplichte velden</p>
+					</div>
+						{% include "mpportal/includes/fieldset.html" %}
+					<div>
+						<input type="submit" id="confirm-button" name="confirm" value="Opslaan" />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block header %}
+<div class="wrapper">
+	<p id="breadcrumb">
+		<span class="assistive">U bevindt zich hier:</span>
+		<a href="/">Home</a>
+		<a href="{% url 'mpportal:instrumentaria' %}">Instrumentaria</a>
+		<span class="assistive">Instrumentaria</span>
+	</p>
+	<h1>Instrumentaria</h1>
+</div>
+{% endblock %}				
+
+

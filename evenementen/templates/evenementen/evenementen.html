@@ -1,0 +1,37 @@
+{% extends "evenementen/navigation.html" %}
+
+{% block content %}
+<div id="content" class="article">
+  <p>Lijst actieve evenementen:</p>
+	<div class="common results">
+	{% if evenement_list %}
+		{% for evenement in evenement_list|dictsort:"naam" %}
+			<a href="{{ evenement.get_absolute_url }}" class="publication">
+				<h3>{{ evenement.naam }}</h3>
+				{{ evenement.omschrijving|safe|truncatewords_html:30 }}
+				<p class="meta">Evenement
+				{% if evenement.start_datum %} | {{ evenement.start_datum|date:"d-m-Y" }}{% endif %}
+				{% if evenement.einde_datum %} - {{ evenement.einde_datum|date:"d-m-Y" }}{% endif %}
+				</p>
+			</a>
+		{% endfor %}
+	{% else %}
+		<p>Er zijn geen evenementen beschikbaar.</p>
+	{% endif %}
+	</div>
+</div>
+{% if perms.evenementen.add_evenement %}
+<div id="aside">
+	<div class="block">
+		<h2>Beheer</h2>
+		<ul class="common">
+			<li>
+				<a href="{% url 'evenementen:evenement_voegtoe' %}" class="common">
+					<h3>Toevoegen evenement</h3>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

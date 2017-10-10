@@ -1,0 +1,38 @@
+{% extends "mainscreen/base.html" %}
+
+{% block title %}SSC-Campus - login{% endblock %}
+
+{% block content %}
+<div id="content" class="article">
+	<div class="form fancy">
+		<form method="post" action="{% url 'login' %}">
+			{% if form.non_field_errors %}<div class="message error"><p>Aanmelden niet gelukt, probeer het nog een keer.</p>{{ form.non_field_errors }}</div>{% endif %}
+			<div class="formWrapper eform">
+				<div class="eformText">
+					{% if next %}
+						{% if user.is_authenticated %}
+						<h2 class="req">Uw account is niet geautoriseerd voor deze pagina. Om verder te gaan wordt u verzocht in te loggen met een geautoriseerd account.</h2>
+						{% else %}
+						<h2 class="req">Log in met uw account</h2>
+						{% endif %}
+					{% endif %}
+					<p class="meta req">* verplichte velden</p>
+				</div>
+					{% include "mainscreen/includes/fieldset.html" %}
+				<div>
+					<input type="submit" value="Aanmelden" />
+					<input type="hidden" name="next" value="{{ next }}" />
+				</div>
+			</div>
+		</form>
+	</div>
+	{# Assumes you setup the password_reset view in your URLconf #}
+	<p><a href="{% url 'password_reset' %}">Herstel wachtwoord</a></p>
+</div>
+{% endblock %}
+
+{% block header %}
+<div class="wrapper">
+</div>
+{% endblock %}				
+
