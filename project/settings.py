@@ -43,8 +43,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'mainscreen',
+    'evenementen',
     'welcome',
 )
+
+INSTALLED_APPS += ('django_summernote', )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
