@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^accounts/password_reset/$', auth_views.password_reset, {'template_name': 'mainscreen/password_reset.html'}, name='password_reset'),
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^survey/', include('survey.urls')),
 ]

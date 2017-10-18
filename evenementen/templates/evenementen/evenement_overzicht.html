@@ -1,45 +1,37 @@
-{% extends "evenementen/navigation.html" %}
+{% extends "mainscreen/base.html" %}
+
+{% block title %}{{ evenement.naam }} | Evenement | UBR|V-Lab{% endblock %}
+
+{% block navbar %}
+<nav class="breadCrumbNav">
+  <span class="assistive">U bevindt zich hier:</span>
+  <a href="https://www.ubrijk.nl/organisatie/ubr/over-ubr/ubr-v-lab">UBR|V-Lab</a>
+  <a href="/evenementen">Evenementen</a>
+  <span class="assistive">{{ evenement.naam }}</span>
+</nav>
+{% endblock %}
 
 {% block content %}
 <div id="content" class="article">
-	<table style="width:100%">
-		<tbody>
-			<tr>
-				<th scope="row">Naam</th>
-				<td>{{ evenement.naam }}</td>
-			</tr>
-			<tr>
-				<th scope="row">Beschrijving</th>
-				<td>{{ evenement.omschrijving|safe }}</td>
-			</tr>
-			<tr>
-				<th scope="row">Startdatum</th>
-				<td>{{ evenement.start_datum|date:"d-m-Y" }}</td>
-			</tr>
-			<tr>
-				<th scope="row">Einddatum</th>
-				<td>{{ evenement.einde_datum|date:"d-m-Y" }}</td>
-			</tr>
-		</tbody>
-	</table>
+  <h1 class="news">{{ evenement.naam }}</h1>
+  <p class="article-meta">Event | {{ evenement.start_datum|date:"d-m-Y" }}</p>
+{% if evenement.intro %}
+  <div class="intro">
+    <p>{{ evenement.intro }}</p>
+  </div>
+{% endif %}
+{{ evenement.omschrijving|safe }}
 </div>
 {% if perms.evenementen.change_evenement %}
 <div id="aside">
-	<div class="block">
-		<h2>Beheer</h2>
-		<ul class="common">
-			<li>
-				<a href="{% url 'evenementen:evenement_wijzig' evenement.slug %}" class="common">
-					<h3>Evenement wijzigen</h3>
-				</a>
-			</li>
-			<li>
-				<a href="{% url 'evenementen:evenement_wijzig' evenement.slug %}" class="common">
-					<h3>Evenement beëindigen</h3>
-				</a>
-			</li>
-		</ul>
-	</div>
+  <div class="brick linkBlock">
+    <h2>Beheer</h2>
+    <ul class="common">
+      <li>
+        <a href="{% url 'evenementen:evenement_wijzig' evenement.slug %}" class="common">Evenement wijzigen</a>
+      </li>
+    </ul>
+  </div>
 </div>
 {% endif %}
 {% endblock %}

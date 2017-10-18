@@ -1,0 +1,32 @@
+<fieldset name="group0" class="eforms-fieldgroup">
+		<legend class="eforms-fieldgroupname">Formulier gegevens</legend>
+{% for form in response_form %}
+	{% if form.field.widget.attrs.category == category.name or not form.field.widget.attrs.category %}
+			<div {% if field.errors %}class="error"{% else %}class="eforms-field"{% endif %}>
+				<label for="{{ form.field.id_for_label }}">{{ form.label|safe }}:{% if form.field.required %}<strong class="req"> *</strong>{% endif %}</label>
+				<div class="field">
+					{% for field in form %}
+					{% if field.id_for_label %}
+    <label for="{{ field.id_for_label }}" class="radio">
+        {{ field.choice_label }}
+        {{ field.tag }}
+    </label>
+					{% else %}
+						{{ field }}
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			{% if field.help_text %}
+				<div class="hint" data-opentxt="Toelichting bij het veld" data-closetxt="Sluit deze toelichting">
+					<p>{{ field.help_text|safe }}</p>
+				</div>
+			{% endif %}
+			{% if field.errors %}
+				{% for error in field.errors %}
+					<div class="message error"><p>{{ error|escape }}</p></div>
+				{% endfor %}
+			{% endif %}
+	{% endif %}
+{% endfor %}
+</fieldset>

@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'mainscreen',
     'evenementen',
+    'survey',
     'welcome',
 )
 

@@ -1,0 +1,40 @@
+{% extends 'survey/base.html' %}
+{% load i18n %}
+{% load survey_extras %}
+
+{% block title %} {{survey.name}} {% endblock title %}
+
+{% block extrajs %}
+    {{response_form.media}}
+{% endblock %}
+
+{% block body %}
+	<h1> {{survey.name}} </h1>
+	<div class="survey-description"> {{survey.description|safe}} </div>
+
+	<div class="form fancy">
+		<div id="usage_simple" style="position:relative;">
+			<form action="{% url 'survey-detail' id=survey.id %}" method="post" id="survey_form" autocomplete="off">
+				{% if form.non_field_errors %}<div class="message error"><p>Er zijn één of meerdere velden niet of niet juist ingevuld. Controleer uw gegevens en verstuur het formulier opnieuw.</p>{{ form.non_field_errors }}</div>{% endif %}
+				<div class="formWrapper eform">
+					<div class="eformText">
+						<h2 class="req">Aanmelding</h2>
+						<p class="meta req">* verplichte velden</p>
+					</div>
+					{% csrf_token %}
+					{% for category in categories %}
+						<h3> {{category}} </h3>
+						<p> {{category.description}} </p>
+						{% include "survey/question.html" %}
+					{% empty %}
+						<h3> {% trans "Questions" %} </h3>
+						{% include "survey/question.html" %}
+					{% endfor %}
+					<div>
+						<input type="submit" id="confirm-button" name="confirm" value="Sla de wijzigingen op" />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
