@@ -1,4 +1,6 @@
+from django import forms
 from django.contrib import admin
+from django_summernote.widgets import SummernoteWidget
 
 # Register your models here.
 
@@ -16,7 +18,17 @@ class CategoryInline(admin.TabularInline):
     extra = 0
 
 
+# Apply summernote to 'description' TextField in Survey.
+class SurveyAdminForm(forms.ModelForm):
+    class Meta:
+        model = Survey
+        widgets = {
+          'description': SummernoteWidget(),
+        }
+        fields = '__all__'
+
 class SurveyAdmin(admin.ModelAdmin):
+    form = SurveyAdminForm
     list_display = ('name', 'is_published', 'need_logged_user', 'template')
     list_filter = ('is_published', 'need_logged_user')
     inlines = [CategoryInline, QuestionInline]
