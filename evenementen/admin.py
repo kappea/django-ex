@@ -16,7 +16,6 @@ class EvenementAdminForm(forms.ModelForm):
         }
         fields = '__all__'
 
-# Apply summernote to all TextField in model.
 class EvenementAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("naam",)}
     form = EvenementAdminForm
