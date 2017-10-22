@@ -3,6 +3,7 @@
 from django.conf.urls import url
 from .views import SurveyDetail, SurveyCompleted, ConfirmView
 
+app_name = 'survey'
 urlpatterns = [
     url(r'^(?P<id>\d+)/', SurveyDetail.as_view(), name='survey-detail'),
     url(r'^(?P<id>\d+)-(?P<step>\d+)/', SurveyDetail.as_view(),

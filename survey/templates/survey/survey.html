@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load survey_extras %}
 
-{% block title %} {{survey.name}} {% endblock title %}
+{% block title %}{{ survey.name }} | Aanmelding | UBR|V-Lab{% endblock %}
 
 {% block extrajs %}
     {{response_form.media}}
@@ -14,7 +14,7 @@
 
 	<div class="form fancy">
 		<div id="usage_simple" style="position:relative;">
-			<form action="{% url 'survey-detail' id=survey.id %}" method="post" id="survey_form" autocomplete="off">
+			<form action="{% url 'survey:survey-detail' id=survey.id %}" method="post" id="survey_form" autocomplete="off">
 				{% if form.non_field_errors %}<div class="message error"><p>Er zijn één of meerdere velden niet of niet juist ingevuld. Controleer uw gegevens en verstuur het formulier opnieuw.</p>{{ form.non_field_errors }}</div>{% endif %}
 				<div class="formWrapper eform">
 					<div class="eformText">
@@ -27,11 +27,11 @@
 						<p> {{category.description}} </p>
 						{% include "survey/question.html" %}
 					{% empty %}
-						<h3> {% trans "Questions" %} </h3>
+						<h3> {% trans "Vul onderstaande gegevens in" %} </h3>
 						{% include "survey/question.html" %}
 					{% endfor %}
 					<div>
-						<input type="submit" id="confirm-button" name="confirm" value="Sla de wijzigingen op" />
+						<input type="submit" id="confirm-button" name="confirm" value="Ga verder" />
 					</div>
 				</div>
 			</form>

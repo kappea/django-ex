@@ -69,10 +69,12 @@
     </p>
   </div>
 
-</div><div id="navBar">
+</div>
+<div id="navBar">
   <div class="wrapper">{% block navbar %}{% endblock %}</div>
 </div>
 <div id="main">
+  {% block subnavigation %}{% endblock %}
   <div class="wrapper">{% block content %}{% endblock %}</div>
 </div>
 <div id="footer">
@@ -81,21 +83,8 @@
     <div class="column">
     <h2>Service</h2>
     <ul>
-
-    <li>
-        <a href="/contact">Contact</a>
-      </li>
-    <li>
-        <a href="/rss">RSS</a>
-      </li>
-    <li>
-        <a href="/vacatures">Vacatures</a>
-      </li>
-    <li>
-        <a href="/sitemap">Sitemap</a>
-      </li>
-    <li>
-        <a href="/help">Help</a>
+      <li>
+        <a href="https://www.ubrijk.nl/organisatie/ubr/over-ubr/ubr-v-lab/contact">Contact</a>
       </li>
     </ul>
 </div>
@@ -104,16 +93,16 @@
     <ul>
 
     <li>
-        <a href="/copyright">Copyright</a>
+        <a href="https://www.ubrijk.nl/copyright">Copyright</a>
       </li>
     <li>
-        <a href="/privacy">Privacy</a>
+        <a href="https://www.ubrijk.nl//privacy">Privacy</a>
       </li>
     <li>
-        <a href="/cookies">Cookies</a>
+        <a href="https://www.ubrijk.nl//cookies">Cookies</a>
       </li>
     <li>
-        <a href="/toegankelijkheid">Toegankelijkheid</a>
+        <a href="https://www.ubrijk.nl//toegankelijkheid">Toegankelijkheid</a>
       </li>
     </ul>
 </div>

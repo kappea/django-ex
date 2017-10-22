@@ -1,37 +1,31 @@
 {% extends "mainscreen/base.html" %}
 {% load static %}
+
 {% block title %}UBR|V-Lab | UBR | UBRijk{% endblock %}
-
-{% block content %}
-<div id="content" class="article">
-<img src="{% static 'mainscreen/binaries/png/vlab_org.png' %}" width="100%" alt="Logo" />
-<h1>Welkom!</h1>
-<div class="intro"><p>De wereld om ons heen verandert snel. Technologische ontwikkelingen volgen elkaar in rap tempo op. Deze ontwikkelingen hebben invloed op ons gedrag. Als UBR willen we daar maximaal op inspelen. Zowel in onze eigen organisatie als bij onze opdrachtgevers. Want, verandering blijft en dat geldt ook voor haar hoge tempo. Daar hebben we nieuwe vaardigheden bij nodig.</p></div>
-<h2>Experimenteren, leren en verbinden</h2>
-<div class="intro"><p>V-Lab is er om medewerkers van UBR de laatste trends te laten volgen. Bij V-Lab experimenteren, leren en verbinden we in een veilige en vertrouwde omgeving. We testen nieuwe toepassingen en medewerkers ontwikkelen skills die passen bij hun leerdoel en bij de wereld van nu. En natuurlijk zet je ook eigen skills in om collega&rsquo;s verder te helpen.</p></div>
-</div>
-{% endblock %}
-
-{% block header %}
-<div class="wrapper">
-</div>
-{% endblock %}
 
 {% block navbar %}
 <nav class="breadCrumbNav">
   <span class="assistive">U bevindt zich hier:</span>
   <a href="https://www.ubrijk.nl/organisatie/ubr/over-ubr/ubr-v-lab">UBR|V-Lab</a>
-  <span class="assistive">Contact</span>
+  <span class="assistive">Navigatie</span>
 </nav>
 {% endblock %}
 
-{% block navigation %}
-<div class="wrapper">
-	<h2>Menu</h2>
-	<ul>
-		<li class="actief selected">
-			<a href="/">Home</a>
-		</li>
-	</ul>
+{% block subnavigation %}
+  <div class="subNavigation">
+    <div class="wrapper">
+      <ul>
+        <li><a href="{% url 'mainscreen:welkom' %}">Welkom</a></li>
+      </ul>
+      <ul>
+        <li><a href="{% url 'evenementen:evenementen' %}">Evenementen</a></li>
+      </ul>
+	</div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div id="content" class="article">
+<p><img src="{% static 'mainscreen/binaries/png/vlab_org.png' %}" width="100%" alt="Logo" /></p>
 </div>
 {% endblock %}
