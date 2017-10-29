@@ -15,7 +15,7 @@
 	<div class="form fancy">
 		<div id="usage_simple" style="position:relative;">
 			<form action="{% url 'survey:survey-detail' id=survey.id %}" method="post" id="survey_form" autocomplete="off">
-				{% if form.non_field_errors %}<div class="message error"><p>Er zijn één of meerdere velden niet of niet juist ingevuld. Controleer uw gegevens en verstuur het formulier opnieuw.</p>{{ form.non_field_errors }}</div>{% endif %}
+				{% if response_form.non_field_errors %}<div class="message error"><p>Er zijn één of meerdere velden niet of niet juist ingevuld. Controleer uw gegevens en verstuur het formulier opnieuw.</p>{{ response_form.non_field_errors }}</div>{% endif %}
 				<div class="formWrapper eform">
 					<div class="eformText">
 						<h2 class="req">Aanmelding</h2>

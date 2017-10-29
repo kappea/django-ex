@@ -99,6 +99,7 @@ class Question(models.Model):
     )
 
     text = models.TextField()
+    help_text = models.TextField(blank=True, null=True)
     order = models.IntegerField()
     required = models.BooleanField()
     category = models.ForeignKey(Category, blank=True, null=True,

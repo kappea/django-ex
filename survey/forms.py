@@ -119,6 +119,17 @@ class ResponseForm(models.ModelForm):
         except KeyError:
             return None
 
+    def get_question_help_text(self, question):
+        """ Return the help text we should use for a question.
+
+        :param Question question: The question
+        :rtype: String or None  """
+        help_text = question.help_text
+        if help_text and help_text.strip():
+            return help_text
+        else:
+            return None
+
     def get_question_choices(self, question):
         """ Return the choices we should use for a question.
 
@@ -160,6 +171,9 @@ class ResponseForm(models.ModelForm):
         :param dict data: The pre-existing values from a post request. """
         kwargs = {"label": question.text,
                   "required": question.required, }
+        help_text = self.get_question_help_text(question)
+        if help_text:
+            kwargs["help_text"] = help_text
         initial = self.get_question_initial(question, data)
         if initial:
             kwargs["initial"] = initial

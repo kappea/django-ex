@@ -2,7 +2,7 @@
 		<legend class="eforms-fieldgroupname">Formulier gegevens</legend>
 {% for form in response_form %}
 	{% if form.field.widget.attrs.category == category.name or not form.field.widget.attrs.category %}
-			<div {% if field.errors %}class="error"{% else %}class="eforms-field"{% endif %}>
+			<div {% if form.errors %}class="error"{% else %}class="eforms-field"{% endif %}>
 				<label for="{{ form.field.id_for_label }}">{{ form.label|safe }}:{% if form.field.required %}<strong class="req"> *</strong>{% endif %}</label>
 				<div class="field">
 					{% for field in form %}
@@ -17,13 +17,13 @@
 					{% endfor %}
 				</div>
 			</div>
-			{% if field.help_text %}
+			{% if form.help_text %}
 				<div class="hint" data-opentxt="Toelichting bij het veld" data-closetxt="Sluit deze toelichting">
-					<p>{{ field.help_text|safe }}</p>
+					<p>{{ form.help_text|safe }}</p>
 				</div>
 			{% endif %}
-			{% if field.errors %}
-				{% for error in field.errors %}
+			{% if form.errors %}
+				{% for error in form.errors %}
 					<div class="message error"><p>{{ error|escape }}</p></div>
 				{% endfor %}
 			{% endif %}
